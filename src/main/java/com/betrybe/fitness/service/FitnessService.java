@@ -1,8 +1,7 @@
 package com.betrybe.fitness.service;
 
 import com.betrybe.fitness.database.FakeFitnessDatabase;
-import com.betrybe.fitness.dto.WorkoutCreationDto;
-import com.betrybe.fitness.dto.WorkoutDto;
+import com.betrybe.fitness.dto.*;
 import com.betrybe.fitness.model.Workout;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +23,19 @@ public class FitnessService implements FitnessServiceInterface {
 
   @Override
   public WorkoutDto saveWorkout(WorkoutCreationDto newWorkoutDto) {
-    return null;
+    Workout newWorkout = new Workout();
+    newWorkout.setName(newWorkoutDto.name());
+    newWorkout.setRepetitions(newWorkoutDto.repetitions());
+    newWorkout.setSecretTechnique(newWorkoutDto.secretTechnique());
+
+
+    Workout workout = repository.saveWorkout(newWorkout);
+
+    return new WorkoutDto(
+        workout.getId(),
+        workout.getName(),
+        workout.getRepetitions()
+    );
   }
 
   @Override
@@ -36,7 +47,6 @@ public class FitnessService implements FitnessServiceInterface {
         value.getName(),
         value.getRepetitions()
     ));
-
   }
 
   @Override

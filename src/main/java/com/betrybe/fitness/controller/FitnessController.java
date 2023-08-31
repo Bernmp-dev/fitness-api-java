@@ -14,4 +14,9 @@ public class FitnessController implements FitnessControllerInterface {
   @Autowired
     public FitnessController(FitnessServiceInterface fitnessService) {
   }
+
+  @GetMapping("/fitness")
+  public String getFitness() {
+    return "Boas vindas à API de Fitness!";
+  }
 }

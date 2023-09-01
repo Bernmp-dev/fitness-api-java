@@ -1,12 +1,17 @@
 package com.betrybe.fitness.controller;
 
-import com.betrybe.fitness.dto.*;
+import com.betrybe.fitness.dto.WorkoutCreationDto;
+import com.betrybe.fitness.dto.WorkoutDto;
 import com.betrybe.fitness.service.FitnessServiceInterface;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**
@@ -27,6 +32,11 @@ public class FitnessController implements FitnessControllerInterface {
     return "Boas vindas à API de Fitness!";
   }
 
+  /**
+   * Get all workouts.
+   *
+   * @return list of workouts
+   */
   @GetMapping("/fitness/workouts")
   public ResponseEntity<List<WorkoutDto>> getAllWorkouts() {
     List<WorkoutDto> result = fitnessService.getAllWorkouts();
@@ -55,6 +65,12 @@ public class FitnessController implements FitnessControllerInterface {
     return ResponseEntity.notFound().build();
   }
 
+  /**
+   * Save workout.
+   *
+   * @param workout workout
+   * @return saved workout
+   */
   @PostMapping("/fitness/workouts")
   public ResponseEntity<WorkoutDto> saveWorkout(@RequestBody WorkoutCreationDto workout) {
 

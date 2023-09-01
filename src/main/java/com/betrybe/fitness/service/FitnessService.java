@@ -1,9 +1,9 @@
 package com.betrybe.fitness.service;
 
 import com.betrybe.fitness.database.FakeFitnessDatabase;
-import com.betrybe.fitness.dto.*;
+import com.betrybe.fitness.dto.WorkoutCreationDto;
+import com.betrybe.fitness.dto.WorkoutDto;
 import com.betrybe.fitness.model.Workout;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

@@ -3,8 +3,10 @@ package com.betrybe.fitness.service;
 import com.betrybe.fitness.database.FakeFitnessDatabase;
 import com.betrybe.fitness.dto.*;
 import com.betrybe.fitness.model.Workout;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,13 @@ public class FitnessService implements FitnessServiceInterface {
 
   @Override
   public List<WorkoutDto> getAllWorkouts() {
-    return null;
+    List<Workout> workouts = repository.getAllWorkouts();
+
+    return workouts.stream()
+        .map(workout -> new WorkoutDto(
+            workout.getId(),
+            workout.getName(),
+            workout.getRepetitions()
+        )).collect(Collectors.toList());
   }
 }
